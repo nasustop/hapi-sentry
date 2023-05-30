@@ -9,13 +9,7 @@ declare(strict_types=1);
  * @contact  xupengfei@xupengfei.net
  * @license  https://github.com/nasustop/hapi-sentry/blob/master/LICENSE
  */
-namespace HyperfTest\Cases;
-
-use PHPUnit\Framework\TestCase;
-
-/**
- * Class AbstractTestCase.
- */
-abstract class AbstractTestCase extends TestCase
-{
-}
+return [
+    'dsn' => env('SENTRY_DSN'),
+    'logger' => 'default',
+];

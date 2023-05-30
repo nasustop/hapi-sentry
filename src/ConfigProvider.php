@@ -7,9 +7,9 @@ declare(strict_types=1);
  * @link     https://www.nasus.top
  * @document https://wiki.nasus.top
  * @contact  xupengfei@xupengfei.net
- * @license  https://github.com/nasustop/hapi-cache/blob/master/LICENSE
+ * @license  https://github.com/nasustop/hapi-sentry/blob/master/LICENSE
  */
-namespace Nasus\HapiSentry;
+namespace Nasustop\HapiSentry;
 
 class ConfigProvider
 {
@@ -25,6 +25,14 @@ class ConfigProvider
                     'paths' => [
                         __DIR__,
                     ],
+                ],
+            ],
+            'publish' => [
+                [
+                    'id' => 'sentry',
+                    'description' => 'The config for sentry.',
+                    'source' => __DIR__ . '/../publish/sentry.php',
+                    'destination' => BASE_PATH . '/config/autoload/sentry.php',
                 ],
             ],
         ];

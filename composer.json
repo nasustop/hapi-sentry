@@ -1,7 +1,8 @@
 {
-    "name": "nasus/hapi-sentry",
+    "name": "nasustop/hapi-sentry",
     "type": "library",
     "license": "MIT",
+    "version": "1.0.0",
     "keywords": [
         "php",
         "hyperf"
@@ -9,8 +10,11 @@
     "description": "",
     "autoload": {
         "psr-4": {
-            "Nasus\\HapiSentry\\": "src/"
-        }
+            "Nasustop\\HapiSentry\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -18,7 +22,9 @@
         }
     },
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "hyperf/logger": "~3.0.0",
+        "sentry/sdk": "^3.3"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
@@ -34,7 +40,10 @@
     "prefer-stable": true,
     "config": {
         "optimize-autoloader": true,
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "scripts": {
         "test": "phpunit -c phpunit.xml --colors=always",
@@ -43,7 +52,7 @@
     },
     "extra": {
         "hyperf": {
-            "config": "Nasus\\HapiSentry\\ConfigProvider"
+            "config": "Nasustop\\HapiSentry\\ConfigProvider"
         }
     }
 }

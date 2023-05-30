@@ -9,16 +9,10 @@ declare(strict_types=1);
  * @contact  xupengfei@xupengfei.net
  * @license  https://github.com/nasustop/hapi-sentry/blob/master/LICENSE
  */
-namespace HyperfTest\Cases;
-
-/**
- * @internal
- * @coversNothing
- */
-class ExampleTest extends AbstractTestCase
-{
-    public function testExample()
+if (! function_exists('sentryException')) {
+    function sentryException(Throwable $throwable)
     {
-        $this->assertTrue(true);
+        $sentry = \Hyperf\Context\ApplicationContext::getContainer()->get(\Nasustop\HapiSentry\Sentry::class);
+        $sentry->captureException($throwable);
     }
 }
