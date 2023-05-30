@@ -2,7 +2,7 @@
     "name": "nasustop/hapi-sentry",
     "type": "library",
     "license": "MIT",
-    "version": "3.0.0",
+    "version": "2.2.0",
     "keywords": [
         "php",
         "hyperf"
@@ -23,7 +23,7 @@
     },
     "require": {
         "php": ">=8.0",
-        "hyperf/logger": "~3.0.0",
+        "hyperf/logger": "~2.2.0",
         "sentry/sdk": "^3.3"
     },
     "require-dev": {
