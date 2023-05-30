@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Nasustop\HapiSentry;
 
 use Http\Discovery\Psr17FactoryDiscovery;
-use Hyperf\Context\ApplicationContext;
+use Hyperf\Utils\ApplicationContext;
 use Hyperf\Logger\LoggerFactory;
 use Sentry\ClientBuilder;
 use Sentry\SentrySdk;

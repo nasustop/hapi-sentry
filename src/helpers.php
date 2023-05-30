@@ -12,7 +12,7 @@ declare(strict_types=1);
 if (! function_exists('sentryException')) {
     function sentryException(Throwable $throwable)
     {
-        $sentry = \Hyperf\Context\ApplicationContext::getContainer()->get(\Nasustop\HapiSentry\Sentry::class);
+        $sentry = \Hyperf\Utils\ApplicationContext::getContainer()->get(\Nasustop\HapiSentry\Sentry::class);
         $sentry->captureException($throwable);
     }
 }
