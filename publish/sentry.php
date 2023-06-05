@@ -12,4 +12,5 @@ declare(strict_types=1);
 return [
     'dsn' => env('SENTRY_DSN'),
     'logger' => 'default',
+    'timeout' => 1.0,
 ];
