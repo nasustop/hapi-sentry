@@ -22,7 +22,7 @@ use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\Plugin\RetryPlugin;
 use Http\Client\Common\PluginChain;
 use Http\Promise\Promise;
-use Hyperf\Context\ApplicationContext;
+use Hyperf\Contract\ConfigInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -174,7 +174,9 @@ final class SwooleHttpTransport implements TransportInterface
         go(function () use ($request) {
             $client = new Client($request->getUri()->getHost(), $request->getUri()->getPort(), $request->getUri()->getScheme() === 'https');
             $client->setMethod($request->getMethod());
-            $config = ApplicationContext::getContainer()->get(\Hyperf\Contract\ConfigInterface::class)->get('sentry');
+            /* @var $configFactory ConfigInterface */
+            $configFactory = make(ConfigInterface::class);
+            $config = $configFactory->get('sentry');
             $client->set(['timeout' => ! empty($config['timeout']) ? floatval($config['timeout']) : 3.0]);
             $headers = array_map(function ($value) {
                 if (is_array($value)) {

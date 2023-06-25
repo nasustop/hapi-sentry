@@ -9,10 +9,14 @@ declare(strict_types=1);
  * @contact  xupengfei@xupengfei.net
  * @license  https://github.com/nasustop/hapi-sentry/blob/master/LICENSE
  */
+
+use Nasustop\HapiSentry\Sentry;
+
 if (! function_exists('sentryException')) {
     function sentryException(Throwable $throwable)
     {
-        $sentry = \Hyperf\Context\ApplicationContext::getContainer()->get(\Nasustop\HapiSentry\Sentry::class);
+        /* @var $sentry Sentry */
+        $sentry = make(Sentry::class);
         $sentry->captureException($throwable);
     }
 }

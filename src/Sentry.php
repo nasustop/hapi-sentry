@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Nasustop\HapiSentry;
 
 use Http\Discovery\Psr17FactoryDiscovery;
-use Hyperf\Context\ApplicationContext;
+use Hyperf\Contract\ConfigInterface;
 use Hyperf\Logger\LoggerFactory;
 use Sentry\ClientBuilder;
 use Sentry\SentrySdk;
@@ -22,12 +22,15 @@ class Sentry
 {
     public function __construct()
     {
-        $config = ApplicationContext::getContainer()->get(\Hyperf\Contract\ConfigInterface::class)->get('sentry');
+        /* @var $configFactory ConfigInterface */
+        $configFactory = make(ConfigInterface::class);
+        $config = $configFactory->get('sentry');
         if (! empty($config['dsn']) && SentrySdk::getCurrentHub()->getClient() == null) {
             $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
             $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
-            $logger = ApplicationContext::getContainer()
-                ->get(LoggerFactory::class)->get('sentry', $config['logger'] ?? 'default');
+            /* @var $loggerFactory LoggerFactory */
+            $loggerFactory = make(LoggerFactory::class);
+            $logger = $loggerFactory->get('sentry', $config['logger'] ?? 'default');
             $client = ClientBuilder::create([
                 'dsn' => $config['dsn'],
             ])
